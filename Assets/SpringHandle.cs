@@ -22,7 +22,10 @@ public class SpringHandle : MonoBehaviour
         if (controller == null)
             return;
 
-        controller.JumpRegadrdless(Vector2.right);
+        //controller.Move(Vector2.right);
+        //controller.JumpRegadrdless(Vector2.right * 50);
+        Rigidbody2D rigidbody = collision.gameObject.GetComponent<Rigidbody2D>();
+        rigidbody.velocity = new Vector2(100, rigidbody.velocity.y);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -31,7 +34,9 @@ public class SpringHandle : MonoBehaviour
         if (controller == null)
             return;
 
-        controller.Move(Vector2.right);
-        controller.JumpRegadrdless(Vector2.right * 50);
+        Rigidbody2D rigidbody = collision.gameObject.GetComponent<Rigidbody2D>();
+        rigidbody.velocity = new Vector2(100, rigidbody.velocity.y);
+        //controller.Move(Vector2.right);
+        //controller.JumpRegadrdless(Vector2.right * 50);
     }
 }

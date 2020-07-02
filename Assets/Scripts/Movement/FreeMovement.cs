@@ -39,8 +39,11 @@ public class FreeMovement : MonoBehaviour
     {
         BlockInteractive block = collision.gameObject.GetComponent<BlockInteractive>();
         
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && collision.otherCollider.gameObject.name != "HorizontalDirectionChange")
+        {
+            gameObject.GetComponent<MovementController>().JumpRegadrdless(Vector2.up);
             Destroy(gameObject);
+        }
         else if (block != null && block.Activating)
             controller.Jump();
     }

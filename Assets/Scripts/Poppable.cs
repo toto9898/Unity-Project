@@ -105,13 +105,13 @@ public abstract class Poppable : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Harmful"))
+        if (collision.gameObject.CompareTag("Harmful") || collision.gameObject.CompareTag("Lethal"))
             StartPop(popDirection);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.gameObject.CompareTag("Harmful"))
+        if (collision.collider.gameObject.CompareTag("Harmful") || collision.collider.gameObject.CompareTag("Lethal"))
             StartPop(popDirection);
     }
 }

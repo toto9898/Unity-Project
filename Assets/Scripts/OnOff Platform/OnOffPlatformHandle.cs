@@ -38,7 +38,8 @@ public class OnOffPlatformHandle : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
-        if (collision.collider.gameObject.CompareTag("Harmful") && Time.realtimeSinceStartup - lastSwitchTime > minSwitchTime)
+        if ((collision.collider.gameObject.CompareTag("Harmful") || collision.collider.gameObject.CompareTag("Lethal")) && 
+            Time.realtimeSinceStartup - lastSwitchTime > minSwitchTime)
         {
             foreach (var item in package)
                 SwitchActive(item);
