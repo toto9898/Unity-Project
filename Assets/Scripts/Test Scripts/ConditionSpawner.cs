@@ -44,6 +44,7 @@ public class ConditionSpawner : MonoBehaviour
                         respawnOnDeath == false && alreadySpawned[i] == false)
                     {
                         spawnedObjects[i] = Instantiate(objectsToSpawn[i]);
+                        spawnedObjects[i].transform.position = objectsToSpawn[i].transform.position;
                         spawnedObjects[i].SetActive(true);
                     }
                 }
