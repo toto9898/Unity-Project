@@ -9,11 +9,11 @@ public class GroundCheck : MonoBehaviour
     public bool Grounded { get => grounded; private set => grounded = value; }
 
     [SerializeField]
-    [Range(0, 1f)]
+    [Range(0, 5f)]
     private float RayLength = 0.58f;
 
     [SerializeField]
-    [Range(0, 1f)]
+    [Range(0, 3f)]
     private float RayOffset = 0.35f;
 
     private void Update()

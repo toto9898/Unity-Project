@@ -9,6 +9,9 @@ public class CameraFollow : MonoBehaviour
 
     private void LateUpdate()
     {
-        transform.position = new Vector3(player.position.x, transform.position.y, transform.position.z);
+        if (player != null)
+            transform.position = new Vector3(player.position.x, transform.position.y, transform.position.z);
+        else
+            Debug.LogWarning("Camera has lost the player refference.");
     }
 }

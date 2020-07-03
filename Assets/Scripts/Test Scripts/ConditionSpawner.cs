@@ -22,14 +22,11 @@ public class ConditionSpawner : MonoBehaviour
         spawnedObjects = new GameObject[objectsToSpawn.Count];
         alreadySpawned = new bool[objectsToSpawn.Count];
 
-
-        Debug.Log(spawnedObjects.Length);
         for (int i = 0; i < objectsToSpawn.Count; i++)
         {
             spawnedObjects[i] = null;
             alreadySpawned[i] = false;
         }
-        Debug.Log(spawnedObjects.Length);
     }
 
     private void Update()

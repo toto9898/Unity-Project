@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: prstart
   m_EditorClassIdentifier: 
-  hashCode: 0
+  hashCode: -1416177566
   material: {fileID: 7676405747547997153}
-  materialHashCode: 0
+  materialHashCode: -1979395927
   m_Version: 1.1.0
   m_SourceFontFileGUID: bc4cb0e7c4a25da418dec7f021a4c2fc
   m_SourceFontFile_EditorRef: {fileID: 0}

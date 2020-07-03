@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4049693551249609627}
   - component: {fileID: 7652795527631519055}
   - component: {fileID: 1736073584179953294}
-  m_Layer: 11
+  m_Layer: 15
   m_Name: ParabolaBullet
   m_TagString: Lethal
   m_Icon: {fileID: 0}
