@@ -15,7 +15,6 @@ public class Finish : MonoBehaviour
         {
             FinishScreen.SetActive(true);
             Invoke("LoadMenu", 3);
-
         }
     }
 

@@ -6379,6 +6379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 357097912}
+  FinishScreen: {fileID: 1020061133}
 --- !u!1 &1264807405
 GameObject:
   m_ObjectHideFlags: 0
