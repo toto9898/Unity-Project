@@ -87,13 +87,9 @@ public class MovementController : MonoBehaviour
         
         if (fullSpeed)
         {
-            rb.velocity += new Vector2(maxSpeed * rb.velocity.x, rb.velocity.y) * Time.fixedDeltaTime;
-            rb.velocity =
-                new Vector2(
-                    Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed),
-                    rb.velocity.y);
+            rb.velocity = new Vector2(maxSpeed * direction.x, rb.velocity.y);
         }
-        if (Mathf.Abs(rb.velocity.x) < maxSpeed)
+        else if (Mathf.Abs(rb.velocity.x) < maxSpeed)
         {
             rb.velocity += direction * Aceleration * 10 * Time.fixedDeltaTime;
 

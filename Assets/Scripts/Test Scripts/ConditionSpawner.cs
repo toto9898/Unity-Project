@@ -1,6 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Security;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class ConditionSpawner : MonoBehaviour
@@ -14,38 +17,69 @@ public class ConditionSpawner : MonoBehaviour
     [SerializeField]
     private bool respawnOnDeath = false;
 
-    private GameObject[] spawnedObjects = null;
-    private bool[] alreadySpawned = null;
+    private TriggerNotify[] triggers;
+
+    private class StatefulObject
+    {
+        public GameObject obj;
+        public bool spawned;
+        public int index;
+    }
+
+    private StatefulObject[] objects;
 
     private void Start()
     {
-        spawnedObjects = new GameObject[objectsToSpawn.Count];
-        alreadySpawned = new bool[objectsToSpawn.Count];
+        triggers = GetComponentsInChildren<TriggerNotify>();
+        foreach (var trigger in triggers)
+            trigger.OnTriggerEnter += SpawnAll;
+
+        objects = new StatefulObject[objectsToSpawn.Count];
 
         for (int i = 0; i < objectsToSpawn.Count; i++)
-        {
-            spawnedObjects[i] = null;
-            alreadySpawned[i] = false;
-        }
+            objects[i] = new StatefulObject { index = i };
     }
 
     private void Update()
     {
-        if (Score.score >= coinsNeeded)
+        if (respawnOnDeath == false)
+            return;
+
+        foreach (var item in objects.Where(x =>
+            x.obj == null &&
+            x.spawned))
         {
-            for (int i = 0; i < spawnedObjects.Length; ++i)
-            {
-                if (spawnedObjects[i] == null)
-                {
-                    if (respawnOnDeath ||
-                        respawnOnDeath == false && alreadySpawned[i] == false)
-                    {
-                        spawnedObjects[i] = Instantiate(objectsToSpawn[i]);
-                        spawnedObjects[i].transform.position = objectsToSpawn[i].transform.position;
-                        spawnedObjects[i].SetActive(true);
-                    }
-                }
-            }
+            Spawn(item);
+        }    
+    }
+
+    private void Spawn(StatefulObject obj)
+    {
+        if (obj.obj != null)
+            return;
+
+        obj.obj = Instantiate(objectsToSpawn[obj.index]);
+        obj.spawned = true;
+        obj.obj.transform.position = objectsToSpawn[obj.index].transform.position;
+        obj.obj.SetActive(true);
+    }
+    
+    private void SpawnAll()
+    {
+        if (Score.score < coinsNeeded) 
+            return;
+
+        foreach (var item in objects.Where(x => 
+            x.obj == null &&
+            x.spawned == false))
+        {
+            Spawn(item);
         }
+    }
+
+    private void OnDestroy()
+    {
+        foreach (var trigger in triggers)
+            trigger.OnTriggerEnter -= SpawnAll;
     }
 }

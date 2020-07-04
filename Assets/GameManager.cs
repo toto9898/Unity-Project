@@ -1,22 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public SceneAsset GameScene;
-    public SceneAsset MainMenuScene;
+    private enum Scene
+    {
+        MainMenu = 0,
+        Game = 1
+    }
 
     public void LoadGame()
     {
-        SceneManager.LoadScene(GameScene.name);
+        SceneManager.LoadScene((int)Scene.Game);
+        Score.score = 0;
     }
 
     public void LoadMainMenu()
     {
-        SceneManager.LoadScene(MainMenuScene.name);
+        SceneManager.LoadScene((int)Scene.MainMenu);
     }
 
     public void QuitGame()

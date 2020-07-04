@@ -1,12 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.U2D.Path.GUIFramework;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class FreeMovement : MonoBehaviour
 {
     private MovementController controller;
-    private Rigidbody2D rigidbody;
 
     private Vector2 direction;
     private HorizontalDirectionChange directionChange;
@@ -15,7 +11,6 @@ public class FreeMovement : MonoBehaviour
     {
         directionChange = GetComponentInChildren<HorizontalDirectionChange>();
         controller = GetComponent<MovementController>();
-        rigidbody = GetComponent<Rigidbody2D>();
 
         direction = Vector2.right;
         controller.Mode = MovementController.MovementMode.RIGIDBODY;
@@ -31,7 +26,6 @@ public class FreeMovement : MonoBehaviour
 
     void DirectionChange()
     {
-        rigidbody.velocity = new Vector2(-rigidbody.velocity.x, rigidbody.velocity.y);
         direction = -direction;
     }
 
